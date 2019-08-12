@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <label>Username</label>
+        <input id="username" name="username" type="text">
+        <label>Password</label>
+        <input id="password" name="password" type="password">
+        <button type="button" onclick="login()">login</button>
+    </form>
+</body>
+<script>
+    function login() {
+        fetch('/oauth/authorize', {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value,
+            })
+        }).then(function (response) {
+            return response.json();
+        }).then( function(json){
+            location.href = json.redirectUri+"\#access_token="+json.accessToken;
+        });
+    }
+</script>
+
+</html>
