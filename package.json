@@ -20,7 +20,7 @@
     "express": "^4.15.2",
     "express-session": "^1.16.2",
     "lodash": "^4.17.4",
-    "mongoose": "^4.8.6",
+    "mongoose": "^4.13.21",
     "morgan": "^1.8.1",
     "oauth2-server": "4.0.0-dev.2"
   }
